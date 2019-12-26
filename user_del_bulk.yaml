@@ -1,0 +1,19 @@
+- hosts: test-servers
+  user: dpnipat1
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Delete a user 
+    user: name={{ item }} remove=yes state=absent force=yes
+    with_items:
+     - user1
+     - user2
+     - user3
+     - user4
+     - user5
+  - name: delete groups
+    group: name={{ item }} state=absent force=yes
+    with_items:
+     - group1
+     - group2
+     - group3

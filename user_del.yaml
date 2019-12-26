@@ -1,0 +1,7 @@
+- hosts: test-servers
+  user: dpnipat1
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Delete a user 
+    user: name=user1 remove=yes state=absent force=yes

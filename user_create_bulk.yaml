@@ -1,0 +1,19 @@
+- hosts: test-servers
+  user: dpnipat1
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Create a user with password by adding to automata group
+    user: name={{ item }} state=present group=automata create_home=yes home=/home/{{ item }} shell=/bin/bash comment="change ticket reference" password='$6$mysecretsalt$qJbapG68nyRab3gxvKWPUcs2g3t0oMHSHMnSKecYNpSi3CuZm.GbBqXO8BE6EI6P1JUefhA0qvD7b5LSh./PU1' 
+    with_items:
+     - user1
+     - user2
+     - user3
+     - user4
+     - user5
+  - name: create multiple groups
+    group: name={{ item }} state=present
+    with_items:
+     - group1
+     - group2
+     - group3

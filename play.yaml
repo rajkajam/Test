@@ -1,0 +1,24 @@
+
+---
+
+ - hosts: centos2
+   name: play1
+   tasks:
+    - name: Execute command 
+      command: mkdir -p /var/www/html
+    - name: Execute script on server
+      script: test_scrtip.sh
+    - name: Install nginx
+      yum: name=nginx state=latest
+
+ - hosts: centos3
+   name: play2
+   tasks:
+    - name: Execute command
+      command: mkdir -p /var/www/html
+    - name: Execute script on server
+      script: test_script.sh
+    - name: Install apache
+      yum: name=apache2 state=latest
+    - name: Execute script hello world
+      script: test_scrtip.sh

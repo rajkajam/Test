@@ -1,0 +1,18 @@
+---
+- hosts: test-servers
+  user: dpnipat1
+  become: yes
+  become_method: sudo
+
+  vars:
+   prod_dns: 8.8.8.8
+   nonprod_dns: 4.4.4.4
+
+  tasks:
+  - name: update resolv.conf on NONPROD the client using template
+    template: src=resolv.conf-nonprod.j2 dest=/etc/resolv.nonprod
+    tags : update_resolv_nonprod 
+
+  - name: update resolv.conf on the PROD client using teplate module
+    template: src=resolv.conf-prod.j2 dest=/etc/resolv.prod
+    tags : update_resolv_prod
